@@ -19,6 +19,7 @@ sealed abstract class CentaurTestFormat(val name: String) {
     case RunFailingTwiceExpectingNoCallCachingTest => "Fail the first run and NOT call cache the second run of"
     case SubmitFailureTest => "fail to submit"
     case InstantAbort => "abort a workflow immediately after submission"
+    case PapiUpgradeTest => "make sure a PAPI upgrade preserves call caching when using the `name-for-call-caching-purposes` attribute"
     case _: CromwellRestartWithRecover => "survive a Cromwell restart and recover jobs"
     case _: CromwellRestartWithoutRecover => "survive a Cromwell restart"
     case _: ScheduledAbort => "abort a workflow mid run"
@@ -106,7 +107,8 @@ object CentaurTestFormat {
       InstantAbort,
       ScheduledAbort,
       WorkflowFailureRestartWithRecover,
-      WorkflowFailureRestartWithoutRecover
+      WorkflowFailureRestartWithoutRecover,
+      PapiUpgradeTest
     ).collectFirst({
       case format: WithCallMarker if format.name.equalsIgnoreCase(testFormat) => withCallMarker(format.name, format.build)
       case format if format.name.equalsIgnoreCase(testFormat) => format.validNelCheck

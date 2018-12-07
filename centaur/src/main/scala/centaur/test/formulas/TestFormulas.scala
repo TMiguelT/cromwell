@@ -165,7 +165,7 @@ object TestFormulas {
           first  <- runSuccessfulWorkflow(workflowDefinition)
           _ = CromwellManager.stopCromwell(s"Scheduled restart from ${workflowDefinition.testName}")
           _ = CromwellManager.startCromwell(postRestart)
-          second <- runSuccessfulWorkflow(workflowDefinition.secondRun) // Same WDL but a backend runtime options targeting PAPI v2.
+          second <- runSuccessfulWorkflow(workflowDefinition.secondRun) // Same WDL and config but a "backend" runtime option targeting PAPI v2.
           _ <- printHashDifferential(first, second)
           metadata <- validateMetadata(second, workflowDefinition, Option(first.id.id))
           _ <- validateNoCacheMisses(second, metadata, workflowDefinition)

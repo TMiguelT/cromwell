@@ -1,0 +1,15 @@
+name: sumby
+testFormat: PapiUpgrade
+backends: [Papi]
+tags: [papi_upgrade]
+retryTestFailures: false
+
+files {
+  workflow: sumby/sumby.wdl
+  inputs: sumby/sumby.inputs
+}
+
+metadata {
+  workflowName: sumby
+  status: Succeeded
+}
