@@ -11,6 +11,6 @@ task sum {
   }
 }
 
-workflow sumby {
+workflow papi_upgrade {
   call sum
 }

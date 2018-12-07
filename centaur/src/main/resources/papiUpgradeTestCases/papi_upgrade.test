@@ -5,11 +5,11 @@ tags: [papi_upgrade]
 retryTestFailures: false
 
 files {
-  workflow: sumby/sumby.wdl
-  inputs: sumby/sumby.inputs
+  workflow: papi_upgrade/papi_upgrade.wdl
+  inputs: papi_upgrade/papi_upgrade.inputs
 }
 
 metadata {
-  workflowName: sumby
+  workflowName: papi_upgrade
   status: Succeeded
 }
