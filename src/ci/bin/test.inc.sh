@@ -507,7 +507,6 @@ cromwell::private::setup_prior_version_resources() {
         | awk -F \" '{print $2}' \
         )"
     prior_version=$((current_version - 1))
-    echo "Cromwell rolling with prior version $prior_version"
 
     CROMWELL_BUILD_CROMWELL_PRIOR_VERSION_JAR="${CROMWELL_BUILD_RESOURCES_DIRECTORY}/cromwell_${prior_version}.jar"
     export CROMWELL_BUILD_CROMWELL_PRIOR_VERSION_JAR
@@ -515,7 +514,6 @@ cromwell::private::setup_prior_version_resources() {
     prior_version_backend_type=${CROMWELL_PRIOR_VERSION_BACKEND_TYPE:-$CROMWELL_BUILD_BACKEND_TYPE}
 
     prior_config="${CROMWELL_BUILD_RESOURCES_DIRECTORY}/${prior_version_backend_type}_${prior_version}_application.conf"
-    echo "Cromwell rolling with prior config ${prior_config}"
     if [ -f "${prior_config}" ]; then
         CROMWELL_BUILD_CROMWELL_PRIOR_VERSION_CONFIG="${prior_config}"
         export CROMWELL_BUILD_CROMWELL_PRIOR_VERSION_CONFIG
