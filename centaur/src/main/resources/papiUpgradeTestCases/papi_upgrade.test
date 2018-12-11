@@ -19,7 +19,7 @@ metadata {
   # computer: me$ echo -n Papi | md5 | tr '[:lower:]' '[:upper:]'
   # 36EF4A8AB268D1A1C74D8108C93D48ED
   # computer: me$
-  "calls.papi_upgrade.sum.callCaching.backend name": "36EF4A8AB268D1A1C74D8108C93D48ED"
+  "calls.papi_upgrade.sum.callCaching.hashes.backend name": "36EF4A8AB268D1A1C74D8108C93D48ED"
 
   # The actual backend name used is still recorded here
   "calls.papi_upgrade.sum.backend": Papiv2
