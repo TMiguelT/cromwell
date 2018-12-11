@@ -497,29 +497,25 @@ cromwell::private::find_cromwell_jar() {
     export CROMWELL_BUILD_CROMWELL_JAR
 }
 
-cromwell::private::setup_prior_papi_version_resources() {
-    local prior_config
-    prior_config="${CROMWELL_BUILD_RESOURCES_DIRECTORY}/papi_v1_application.conf"
-    if [ -f "${prior_config}" ]; then
-        CROMWELL_BUILD_CROMWELL_PRIOR_VERSION_CONFIG="${prior_config}"
-        export CROMWELL_BUILD_CROMWELL_PRIOR_VERSION_CONFIG
-    fi
-}
-
 cromwell::private::setup_prior_version_resources() {
     local current_version
     local prior_version
+    local prior_version_backend_type
     local prior_config
     current_version="$( \
         grep 'val cromwellVersion' "${CROMWELL_BUILD_ROOT_DIRECTORY}/project/Version.scala" \
         | awk -F \" '{print $2}' \
         )"
     prior_version=$((current_version - 1))
+    echo "Cromwell rolling with prior version $prior_version"
 
     CROMWELL_BUILD_CROMWELL_PRIOR_VERSION_JAR="${CROMWELL_BUILD_RESOURCES_DIRECTORY}/cromwell_${prior_version}.jar"
     export CROMWELL_BUILD_CROMWELL_PRIOR_VERSION_JAR
 
-    prior_config="${CROMWELL_BUILD_RESOURCES_DIRECTORY}/${CROMWELL_BUILD_BACKEND_TYPE}_${prior_version}_application.conf"
+    prior_version_backend_type=${CROMWELL_PRIOR_VERSION_BACKEND_TYPE:-$CROMWELL_BUILD_BACKEND_TYPE}
+
+    prior_config="${CROMWELL_BUILD_RESOURCES_DIRECTORY}/${prior_version_backend_type}_${prior_version}_application.conf"
+    echo "Cromwell rolling with prior config ${prior_config}"
     if [ -f "${prior_config}" ]; then
         CROMWELL_BUILD_CROMWELL_PRIOR_VERSION_CONFIG="${prior_config}"
         export CROMWELL_BUILD_CROMWELL_PRIOR_VERSION_CONFIG
@@ -723,7 +719,8 @@ cromwell::build::setup_centaur_environment() {
     if [ "${CROMWELL_BUILD_CENTAUR_TYPE}" = "${CROMWELL_BUILD_CENTAUR_TYPE_ENGINE_UPGRADE}" ]; then
         cromwell::private::setup_prior_version_resources
     elif [ "${CROMWELL_BUILD_CENTAUR_TYPE}" = "${CROMWELL_BUILD_CENTAUR_TYPE_PAPI_UPGRADE}" ]; then
-        cromwell::private::setup_prior_papi_version_resources
+        export CROMWELL_PRIOR_VERSION_BACKEND_TYPE=papi_v1
+        cromwell::private::setup_prior_version_resources
     fi;
     cromwell::private::start_build_heartbeat
     cromwell::private::start_cromwell_log_tail
