@@ -714,7 +714,7 @@ cromwell::build::setup_common_environment() {
 
 cromwell::build::setup_centaur_environment() {
     cromwell::private::create_centaur_variables
-    if [ "${CROMWELL_BUILD_CENTAUR_TYPE}" = "${CROMWELL_BUILD_CENTAUR_TYPE_ENGINE_UPGRADE}" ] ; then
+    if [ "${CROMWELL_BUILD_CENTAUR_TYPE}" = "${CROMWELL_BUILD_CENTAUR_TYPE_ENGINE_UPGRADE}" ]; then
         cromwell::private::setup_prior_version_resources
     elif [ "${CROMWELL_BUILD_CENTAUR_TYPE}" = "${CROMWELL_BUILD_CENTAUR_TYPE_PAPI_UPGRADE}" ]; then
         cromwell::private::setup_prior_version_resources
