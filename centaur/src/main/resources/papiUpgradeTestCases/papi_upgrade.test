@@ -1,7 +1,8 @@
-name: sumby
+name: papi_upgrade
 testFormat: PapiUpgrade
 backends: [Papi]
 tags: [papi_upgrade]
+callMark: papi_upgrade.cromwell_killer
 retryTestFailures: false
 
 files {

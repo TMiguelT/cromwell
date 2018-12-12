@@ -33,7 +33,7 @@ case class CentaurTestCase(workflow: Workflow,
     case CromwellRestartWithoutRecover(callMarker) => TestFormulas.workflowRestart(workflow, callMarker, recover = false, finalStatus = Succeeded)
     case ScheduledAbort(callMarker) => TestFormulas.scheduledAbort(workflow, callMarker, restart = false)
     case ScheduledAbortWithRestart(callMarker) => TestFormulas.scheduledAbort(workflow, callMarker, restart = true)
-    case PapiUpgradeTest => TestFormulas.papiUpgrade(workflow)
+    case PapiUpgradeTest(callMarker) => TestFormulas.papiUpgrade(workflow, callMarker)
     case other => Test.invalidTestDefinition(s"Invalid test format $other", workflow)
   }
 
