@@ -1,4 +1,4 @@
-name: restart_jes_with_recover
+name: cromwell_restart
 testFormat: CromwellRestartWithRecover
 callMark: cromwell_restart.cromwell_killer
 backends: [Papi]

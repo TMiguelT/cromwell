@@ -239,10 +239,13 @@ cromwell::private::create_centaur_variables() {
     CROMWELL_BUILD_CENTAUR_TYPE_INTEGRATION="integration"
     CROMWELL_BUILD_CENTAUR_TYPE_ENGINE_UPGRADE="engineUpgrade"
     CROMWELL_BUILD_CENTAUR_TYPE_PAPI_UPGRADE="papiUpgrade"
+    CROMWELL_BUILD_CENTAUR_TYPE_PAPI_UPGRADE_NEW_WORKFLOWS="papiUpgradeNewWorkflows"
 
     if [ -z "${CROMWELL_BUILD_CENTAUR_TYPE-}" ]; then
         if [[ "${CROMWELL_BUILD_TYPE}" = centaurEngineUpgrade* ]]; then
             CROMWELL_BUILD_CENTAUR_TYPE="${CROMWELL_BUILD_CENTAUR_TYPE_ENGINE_UPGRADE}"
+        elif [[ "${CROMWELL_BUILD_TYPE}" = centaurPapiUpgradeNewWorkflows* ]]; then
+            CROMWELL_BUILD_CENTAUR_TYPE="${CROMWELL_BUILD_CENTAUR_TYPE_PAPI_UPGRADE_NEW_WORKFLOWS}"
         elif [[ "${CROMWELL_BUILD_TYPE}" = centaurPapiUpgrade* ]]; then
             CROMWELL_BUILD_CENTAUR_TYPE="${CROMWELL_BUILD_CENTAUR_TYPE_PAPI_UPGRADE}"
         else
@@ -715,6 +718,8 @@ cromwell::build::setup_centaur_environment() {
         cromwell::private::setup_prior_version_resources
     elif [ "${CROMWELL_BUILD_CENTAUR_TYPE}" = "${CROMWELL_BUILD_CENTAUR_TYPE_PAPI_UPGRADE}" ]; then
         cromwell::private::setup_prior_version_resources
+        export CROMWELL_BUILD_CROMWELL_CONFIG="${CROMWELL_BUILD_RESOURCES_DIRECTORY}/papi_v1_37_papi_v2_upgrade.application.conf"
+    elif [ "${CROMWELL_BUILD_CENTAUR_TYPE}" = "${CROMWELL_BUILD_CENTAUR_TYPE_PAPI_UPGRADE_NEW_WORKFLOWS}" ]; then
         export CROMWELL_BUILD_CROMWELL_CONFIG="${CROMWELL_BUILD_RESOURCES_DIRECTORY}/papi_v1_37_papi_v2_upgrade.application.conf"
     fi;
     cromwell::private::start_build_heartbeat
