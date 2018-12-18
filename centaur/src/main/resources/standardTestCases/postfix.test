@@ -1,16 +1,16 @@
-name: postfix
+name: postfix_quantifiers
 testFormat: workflowsuccess
 
 files {
-  workflow: postfix/postfix.wdl
+  workflow: postfix_quantifiers/postfix_quantifiers.wdl
 }
 
 metadata {
-  workflowName: postfix
+  workflowName: postfix_quantifiers
   status: Succeeded
-  "outputs.postfix.bonjour.greeting": "hello alice,bob,charles"
-  "outputs.postfix.hello3.greeting": "hello"
-  "outputs.postfix.hello.greeting": "hello alice,bob,charles"
-  "outputs.postfix.hello2.greeting": "hello alice"
-  "outputs.postfix.bonjour2.greeting": "hello alice"
+  "outputs.postfix_quantifiers.bonjour.greeting": "hello alice,bob,charles"
+  "outputs.postfix_quantifiers.hello3.greeting": "hello"
+  "outputs.postfix_quantifiers.hello.greeting": "hello alice,bob,charles"
+  "outputs.postfix_quantifiers.hello2.greeting": "hello alice"
+  "outputs.postfix_quantifiers.bonjour2.greeting": "hello alice"
 }

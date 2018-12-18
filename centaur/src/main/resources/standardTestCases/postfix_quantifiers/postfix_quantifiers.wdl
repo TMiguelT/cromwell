@@ -30,7 +30,7 @@ task bonjour {
   }
 }
 
-workflow postfix {
+workflow postfix_quantifiers {
   input {
     Array[String] three = ["alice", "bob", "charles"]
     Array[String] one = ["alice"]
