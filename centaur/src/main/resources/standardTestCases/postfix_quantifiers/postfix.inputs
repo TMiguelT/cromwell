@@ -1,0 +1,7 @@
+{
+  "postfix.hello.person": ["alice", "bob", "charles"],
+  "postfix.hello2.person": ["alice"],
+  "postfix.hello3.person": [],
+  "postfix.bonjour.person": ["alice", "bob", "charles"],
+  "postfix.bonjour2.person": ["alice"]
+}

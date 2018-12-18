@@ -1,0 +1,16 @@
+name: postfix
+testFormat: workflowsuccess
+
+files {
+  workflow: postfix/postfix.wdl
+}
+
+metadata {
+  workflowName: postfix
+  status: Succeeded
+  "outputs.postfix.bonjour.greeting": "hello alice,bob,charles"
+  "outputs.postfix.hello3.greeting": "hello"
+  "outputs.postfix.hello.greeting": "hello alice,bob,charles"
+  "outputs.postfix.hello2.greeting": "hello alice"
+  "outputs.postfix.bonjour2.greeting": "hello alice"
+}
